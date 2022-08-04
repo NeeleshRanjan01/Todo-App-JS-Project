@@ -11,9 +11,12 @@ let createDiv = () => {
     //Add & Close Button____________________________________________________________________________________________________________
     let buttonOne = document.getElementById("button1")
     let buttonTwo = document.getElementById("button2")
+    //let lineTwoVar=
 
     buttonOne.addEventListener("click", addDiv);
     document.getElementById("button1").addEventListener("click", () => {
+        //document.querySelector("body").removeChild(lineTwoVar);
+        document.getElementById("lineTwo").style.opacity="0";
         document.querySelector("body").removeChild(createDivBox);
         document.querySelector(".blur").classList.remove("blurPage");
         if (newPage = true) {
@@ -52,6 +55,7 @@ let addDiv = () => {
 
 
 
+
     //To delete div_______________________________________________________________________________________________________________
     let deleteButton = document.getElementById(`icon1${count}`)
     deleteButton.addEventListener("click", () => {
@@ -64,7 +68,7 @@ let addDiv = () => {
     let countValue = count;
     let countText=0;
     ElementButton.addEventListener("click", () => {
-        countText=countText+countValue+1;
+        countText=countText+1;
         let addTextElement = document.createElement("div");
         addTextElement.innerHTML = "<p id=createBoxText>Add New Item</p> <input type=text name=boxName id=BF1> <input name=add type=button value=Add id=button1 class=button1${count}> <input name=close  type=button value=Close id=button2>"
         document.querySelector("body").appendChild(addTextElement);
@@ -83,17 +87,26 @@ let addDiv = () => {
                 return false;
             }
             if (textInput != "") {
-                textOne.innerHTML = `<span id=spanText${countValue}${countText}>${textInput}</span> <button id=markButton>Mark Done</button> `;
+                textOne.innerHTML = `<div id=spanText${countValue}${countText}><span>${textInput}</span> <button class=markButton id=markButton${countValue}${countText}>Mark Done</button></div> `;
                 document.querySelector(`.boxDeg${countValue}`).appendChild(textOne);
-                textOne.setAttribute("id", `textList${countValue}${countText}`);    
+                textOne.setAttribute("id", `textList`);    
             }
 
-            let markButtonVar =document.getElementById(`markButton`)
+            let markButtonVar =document.getElementById(`markButton${countValue}${countText}`)
+            let countOne=`${countValue}${countText}`;
             markButtonVar.addEventListener("click",()=> {
-                document.querySelector(`#spanText${countValue}${countText}`).classList.add("strick");
-                document.querySelector(`#textList${countValue}${countText}`).removeChild(markButtonVar);
+                document.querySelector(`#spanText${countOne}`).classList.add("strick");
+                document.querySelector(`#spanText${countOne}`).removeChild(markButtonVar);
+
+                console.log(`${countValue}${countText}`)
             })
+
+           
+
+           
         }
+
+        
 
 
         //Text List___________________________________________________________________________________________________________________
@@ -102,6 +115,7 @@ let addDiv = () => {
 
         buttonThree.addEventListener("click", textElement);
         document.getElementById("button1").addEventListener("click", () => {
+            
             document.querySelector("body").removeChild(addTextElement);
             document.querySelector(".blur").classList.remove("blurPage");
             if (newPage = true) {
@@ -116,6 +130,8 @@ let addDiv = () => {
                 document.querySelector("#newPageId").classList.remove("blurNewPage")
             }
         })
+
+        
 
     })
 
